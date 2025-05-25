@@ -7,18 +7,18 @@ struct node
     struct node *left;
     struct node *right;
 };
-typedef struct node *khushi;
+typedef struct node *NODE;
 
-khushi add(int data)
+NODE add(int data)
 {
-    khushi temp = malloc(sizeof(struct node));
+    NODE temp = malloc(sizeof(struct node));
     temp->left = NULL;
     temp->right = NULL;
     temp->data = data;
     return temp;
 }
 
-void print(khushi head)
+void print(NODE head)
 {
     if (head != NULL)
     {
@@ -30,7 +30,7 @@ void print(khushi head)
 
 int main()
 {
-    khushi bu = NULL;
+    NODE bu = NULL;
     bu = add(7);
     bu->left = add(9);
     bu->left->right=add(70);

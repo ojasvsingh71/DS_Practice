@@ -11,16 +11,47 @@ struct TreeNode{
     TreeNode(int x,TreeNode* lefti,TreeNode* righti):val(x),left(lefti),right(righti){}
 };
 
-TreeNode* add(TreeNode* root,int x){
+TreeNode* insert(TreeNode* root,int x){
     if(!root){
         return new TreeNode(x);
     }else if(x>root->val){
-        root->right=add(root->right,x);
+        root->right=insert(root->right,x);
     }else if(x<root->val){
-        root->left=add(root->left,x);
+        root->left=insert(root->left,x);
     }else{
         cout<<"Duplicate elements not allowed\n";
     }return root;
+}
+
+TreeNode* minValue(TreeNode* root){
+    while(root->left){
+        root=root->left;
+    }return root;
+}
+
+TreeNode* deletion(TreeNode* root,int x){    
+    if(!root){
+        cout<<"Node not found"<<endl;
+        return root;
+    }else if(x>root->val){
+        root->right=deletion(root->right,x);
+    }else if(x<root->val){
+        root->left=deletion(root->left,x);
+    }else{
+        if(!root->left){
+            cout<<root->val<<"Deleted\n";
+            root=root->right;
+            return root;
+        }else if(!root->right){
+            cout<<root->val<<" Deleted\n";
+            root=root->left;
+            return root;
+        }else{
+            TreeNode* temp=minValue(root->right);
+            root->val=temp->val;
+            root->right=deletion(root->right,temp->val);
+        }
+    }return root;  
 }
 
 void inorder(TreeNode* root){
@@ -32,16 +63,26 @@ void inorder(TreeNode* root){
 }
 
 int main(){
-    int num;
+    int num,tar;
     TreeNode* bu=NULL;
 
+    cout<<"\nEnter total number of nodes to be inserted : \n";
     cin>>num;
+    cout<<"\nEnter the node values : \n";
     while(num--){
         int data;
         cin>>data;
-        bu=add(bu,data);
+        bu=insert(bu,data);
     }
 
+    cout<<"\nInorder of the above BST is : \n";
+    inorder(bu);
+
+    cout<<"\nEnter element to delete : \n";
+    cin>>tar;
+    bu=deletion(bu,tar);
+
+    cout<<"\nBST after deletion : \n";
     inorder(bu);
 
     return 0;
