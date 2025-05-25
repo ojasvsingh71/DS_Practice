@@ -29,6 +29,12 @@ TreeNode* minValue(TreeNode* root){
     }return root;
 }
 
+TreeNode* maxValue(TreeNode* root){
+    while(root->right){
+        root=root->right;
+    }return root;
+}
+
 TreeNode* deletion(TreeNode* root,int x){    
     if(!root){
         cout<<"Node not found"<<endl;
@@ -62,6 +68,18 @@ void inorder(TreeNode* root){
     }
 }
 
+void search(TreeNode* root,int x){
+    if(!root){
+        cout<<"\nNode not found !!!\n";
+    }else if(x>root->val){
+        search(root->right,x);
+    }else if(x<root->val){
+        search(root->left,x);
+    }else{
+        cout<<"\nFound Node !!!\n";
+    }
+}
+
 int main(){
     int num,tar;
     TreeNode* bu=NULL;
@@ -84,6 +102,16 @@ int main(){
 
     cout<<"\nBST after deletion : \n";
     inorder(bu);
+
+    cout<<"\nEnter element to search : \n";
+    cin>>tar;
+    search(bu,tar);
+
+    TreeNode* temp=minValue(bu);
+    cout<<"\nMaximum element in the tree : "<<temp->val;
+
+    temp=maxValue(bu);
+    cout<<"\nMinimum element in the tree : "<<temp->val;
 
     return 0;
 }
