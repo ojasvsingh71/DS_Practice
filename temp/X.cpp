@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+
+    int n;
+    cin>>n;
+
+    int ls=0,rs=n-1;
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(ls==rs && j==rs){
+                cout<<"X";
+            }
+            else if(j==ls){
+                cout<<"\\";
+            }else if(j==rs){
+                cout<<"/";
+            }else {
+                cout<<"*";
+            }
+        }cout<<endl;
+        ls++,rs--;
+    }
+
+    return 0;
+}
