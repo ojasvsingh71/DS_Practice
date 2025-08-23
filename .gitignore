@@ -1,3 +1,6 @@
 *.exe
 .vscode/
 temp.cpp
+*.class
+bu.cpp
+bu.java
