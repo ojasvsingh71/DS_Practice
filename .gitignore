@@ -4,3 +4,4 @@ temp.cpp
 *.class
 bu.cpp
 bu.java
+__pycache__
