@@ -22,12 +22,13 @@ def breadth_first_search(problem):
     if problem.goal_test(node[0]):
         return [node[0]]
 
+
     frontier = deque([node])  # FIFO queue
     explored = set()
 
     while frontier:
         state, path, cost = frontier.popleft()
-        explored.add(state)
+        explored.add(state)                                             
 
         for action in problem.actions(state):
             child_state = problem.result(state, action)
